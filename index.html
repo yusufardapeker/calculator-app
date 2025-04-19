@@ -15,6 +15,63 @@
 		<title>Calculator</title>
 	</head>
 	<body>
+		<div class="container">
+			<div class="head">
+				<span class="head-text">calc</span>
+
+				<form>
+					<legend>Theme</legend>
+
+					<div class="theme-switcher">
+						<fieldset>
+							<div class="label-input-wrapper">
+								<label for="theme1">1</label>
+								<input type="radio" name="theme1" id="theme1" />
+							</div>
+							<div class="label-input-wrapper">
+								<label for="theme2">2</label>
+								<input type="radio" name="theme2" id="theme2" />
+							</div>
+							<div class="label-input-wrapper">
+								<label for="theme3">3</label>
+								<input type="radio" name="theme3" id="theme3" />
+							</div>
+						</fieldset>
+						<div class="theme-indicator"></div>
+					</div>
+				</form>
+			</div>
+
+			<div class="calculator">
+				<input type="text" class="display" disabled />
+
+				<div class="buttons">
+					<button type="button" value="7">7</button>
+					<button type="button" value="8">8</button>
+					<button type="button" value="9">9</button>
+					<button type="button" value="del" class="remove">del</button>
+
+					<button type="button" value="4">4</button>
+					<button type="button" value="5">5</button>
+					<button type="button" value="6">6</button>
+					<button type="button" value="+">+</button>
+
+					<button type="button" value="1">1</button>
+					<button type="button" value="2">2</button>
+					<button type="button" value="3">3</button>
+					<button type="button" value="-">-</button>
+
+					<button type="button" value=".">.</button>
+					<button type="button" value="0">0</button>
+					<button type="button" value="/">/</button>
+					<button type="button" value="x">x</button>
+
+					<button type="button" value="reset" class="remove">reset</button>
+					<button type="button" value="=" class="equal-sign">=</button>
+				</div>
+			</div>
+		</div>
+
 		<script src="./script.js"></script>
 	</body>
 </html>
