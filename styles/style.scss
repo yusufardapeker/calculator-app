@@ -165,8 +165,6 @@ body {
 		display: grid;
 		grid-template-columns: repeat(4, 1fr);
 		gap: 16px;
-		position: relative;
-		z-index: 0;
 
 		button {
 			background-color: var(--key-bg);
@@ -175,29 +173,14 @@ body {
 			height: 60px;
 			width: 60px;
 			font-size: 32px;
-			position: relative;
-
-			&::before {
-				content: "";
-				position: absolute;
-				z-index: -1;
-				background-color: var(--key-shadow);
-				left: 0;
-				right: 0;
-				bottom: -4px;
-				height: 6px;
-				border-radius: 0 0 4px 4px;
-			}
+			box-shadow: 0 4px 0 var(--key-shadow);
 
 			&.remove {
 				background-color: var(--remove-key-bg);
 				color: var(--text-remove, hsl(0, 0%, 100%));
 				font-size: 24px;
 				text-transform: uppercase;
-
-				&::before {
-					background-color: var(--remove-key-shadow);
-				}
+				box-shadow: 0 4px 0 var(--remove-key-shadow);
 			}
 
 			&[value~="reset"] {
@@ -211,10 +194,7 @@ body {
 				font-size: 24px;
 				grid-column: 3 / 5;
 				width: 100%;
-
-				&::before {
-					background-color: var(--equal-shadow);
-				}
+				box-shadow: 0 4px 0 var(--equal-shadow);
 			}
 
 			&:active {
@@ -232,12 +212,6 @@ body {
 			button {
 				width: 92px;
 				border-radius: 10px;
-
-				&::before {
-					height: 12px;
-					bottom: -3px;
-					border-radius: 0px 0px 10px 10px;
-				}
 			}
 		}
 	}
