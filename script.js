@@ -108,6 +108,8 @@ const calculate = () => {
 };
 
 const handleOperator = (operator) => {
+	if (firstInput === "") return;
+
 	displayValue = "";
 	updateDisplay();
 
