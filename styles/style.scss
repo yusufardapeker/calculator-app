@@ -60,11 +60,14 @@
 	--toggle-circle-position: 13;
 }
 
+html {
+	font-size: 62.5%;
+}
+
 body {
 	font-family: "League Spartan", sans-serif;
 	font-weight: 700;
 	display: flex;
-	flex-direction: column;
 	align-items: center;
 	justify-content: center;
 	min-height: 100vh;
@@ -73,29 +76,29 @@ body {
 }
 
 .container {
-	width: 88%;
-	max-width: 480px;
+	width: min(48rem, 88%);
 }
 
 // HEAD
 .head {
 	display: flex;
 	justify-content: space-between;
-	margin-bottom: 32px;
+	align-items: center;
+	margin-bottom: 3.2rem;
 
 	&-text {
-		font-size: 28px;
+		font-size: 2.8rem;
 	}
 
 	form {
 		display: flex;
 		align-items: last baseline;
-		gap: 24px;
+		gap: 2.4rem;
 
-		legend {
+		.form-title {
 			text-transform: uppercase;
-			letter-spacing: 3px;
-			font-size: 12px;
+			letter-spacing: 0.3rem;
+			font-size: 1.2rem;
 		}
 
 		.theme-switcher {
@@ -107,17 +110,21 @@ body {
 					display: flex;
 					flex-direction: column;
 					align-items: center;
-					padding: 0px 4px;
+					padding: 0 0.4rem;
 
 					label {
-						display: inline-block;
-						margin-bottom: 12px;
-						cursor: pointer;
-						font-size: 12px;
+						margin-bottom: 1.2rem;
+						font-size: 1.4rem;
+
+						&:has(+ input:focus-visible) {
+							font-size: 1.6rem;
+							outline: 2px solid var(--equal-toggle-bg);
+							border-radius: 4px;
+							padding: 5px;
+						}
 					}
 
 					input {
-						cursor: pointer;
 						opacity: 0.001;
 					}
 				}
@@ -125,9 +132,9 @@ body {
 
 			.theme-indicator {
 				background-color: var(--secondary-bg);
-				padding: 14px 36px;
+				padding: 1.4rem 3.6rem;
 				border-radius: 9999px;
-				margin-top: -18px;
+				margin-top: -1.8rem;
 				position: relative;
 				z-index: -1;
 
@@ -136,8 +143,8 @@ body {
 					position: absolute;
 					top: 6px;
 					left: calc(4px * var(--toggle-circle-position));
-					width: 16px;
-					height: 16px;
+					width: 1.6rem;
+					height: 1.6rem;
 					border-radius: 50%;
 					background-color: var(--equal-toggle-bg);
 					transition: left 400ms;
@@ -151,67 +158,56 @@ body {
 	.display {
 		width: 100%;
 		background-color: var(--screen-bg);
-		font-size: 32px;
-		padding: 24px;
+		font-size: clamp(3.2rem, 1.8rem + 1.8vw, 4rem);
+		padding: 2.4rem;
 		border-radius: 8px;
 		text-align: right;
-		margin-bottom: 20px;
+		margin-bottom: 2rem;
 	}
 
 	.buttons {
 		background-color: var(--secondary-bg);
-		padding: 24px;
+		padding: 2.4rem;
 		border-radius: 8px;
 		display: grid;
 		grid-template-columns: repeat(4, 1fr);
-		gap: 16px;
+		gap: clamp(1.6rem, 1rem + 1vw, 2.4rem);
 
 		button {
 			background-color: var(--key-bg);
 			color: var(--text-secondary);
-			border-radius: 4px;
-			height: 60px;
-			width: 60px;
-			font-size: 32px;
+			border-radius: max(4px, 1vw);
+			width: max(6rem, 100%);
+			height: 6rem;
+			font-size: clamp(3.2rem, 1.75rem + 1.75vw, 3.8rem);
 			box-shadow: 0 4px 0 var(--key-shadow);
+
+			&:focus-visible {
+				outline: 4px solid var(--equal-shadow);
+			}
 
 			&.remove {
 				background-color: var(--remove-key-bg);
 				color: var(--text-remove, hsl(0, 0%, 100%));
-				font-size: 24px;
+				font-size: 2.4rem;
 				text-transform: uppercase;
 				box-shadow: 0 4px 0 var(--remove-key-shadow);
 			}
 
 			&[value~="reset"] {
 				grid-column: 1 / 3;
-				width: 100%;
 			}
 
 			&.equal-sign {
 				background-color: var(--equal-toggle-bg);
 				color: var(--text-equal-sign, hsl(0, 0%, 100%));
-				font-size: 24px;
+				font-size: 2.4rem;
 				grid-column: 3 / 5;
-				width: 100%;
 				box-shadow: 0 4px 0 var(--equal-shadow);
 			}
 
 			&:active {
 				transform: scale(0.99);
-			}
-		}
-	}
-}
-
-@media (min-width: 376px) {
-	.calculator {
-		.buttons {
-			gap: 24px;
-
-			button {
-				width: 92px;
-				border-radius: 10px;
 			}
 		}
 	}
