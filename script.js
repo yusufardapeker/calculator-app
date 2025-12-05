@@ -37,7 +37,15 @@ const updateDisplay = () => {
 	display.value = displayValue;
 };
 
+const clearError = () => {
+	if (displayValue === "Error") {
+		displayValue = "";
+	}
+};
+
 const handleNumber = (num) => {
+	clearError();
+
 	displayValue += num;
 	updateDisplay();
 
@@ -49,6 +57,8 @@ const handleNumber = (num) => {
 };
 
 const handleDecimal = () => {
+	clearError();
+
 	if (waitingSecondInput && !secondInput.includes(".")) {
 		secondInput += ".";
 		displayValue += ".";
@@ -61,6 +71,8 @@ const handleDecimal = () => {
 };
 
 const deletion = () => {
+	clearError();
+
 	let deletedFigure = displayValue.at(-1);
 
 	displayValue = displayValue.slice(0, -1);
@@ -101,10 +113,10 @@ const handleOperator = (operator) => {
 };
 
 const calculate = () => {
-	firstNum = Number(firstInput);
-	secondNum = Number(secondInput);
+	const firstNum = Number(firstInput);
+	const secondNum = Number(secondInput);
 
-	if (!prevOperator || !secondNum) return;
+	if (!prevOperator || secondNum === "") return;
 
 	let result = 0;
 
@@ -115,6 +127,16 @@ const calculate = () => {
 	} else if (prevOperator === "x") {
 		result = firstNum * secondNum;
 	} else if (prevOperator === "/") {
+		if (firstNum === 0 || secondNum === 0) {
+			displayValue = "Error";
+			firstInput = "";
+			secondInput = "";
+			prevOperator = null;
+			waitingSecondInput = false;
+			updateDisplay();
+			return;
+		}
+
 		result = firstNum / secondNum;
 	}
 
