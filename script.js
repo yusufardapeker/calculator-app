@@ -49,13 +49,14 @@ const handleNumber = (num) => {
 };
 
 const handleDecimal = () => {
-	if (!displayValue.includes(".")) displayValue += ".";
-	updateDisplay();
-
-	if (waitingSecondInput) {
+	if (waitingSecondInput && !secondInput.includes(".")) {
 		secondInput += ".";
-	} else {
+		displayValue += ".";
+		updateDisplay();
+	} else if (!firstInput.includes(".")) {
 		firstInput += ".";
+		displayValue += ".";
+		updateDisplay();
 	}
 };
 
