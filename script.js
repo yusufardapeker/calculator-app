@@ -37,6 +37,17 @@ const updateDisplay = () => {
 	display.value = displayValue;
 };
 
+const handleNumber = (num) => {
+	displayValue += num;
+	updateDisplay();
+
+	if (waitingSecondInput) {
+		secondInput += num;
+	} else {
+		firstInput += num;
+	}
+};
+
 const handleDecimal = () => {
 	if (!displayValue.includes(".")) displayValue += ".";
 	updateDisplay();
@@ -49,42 +60,50 @@ const handleDecimal = () => {
 };
 
 const deletion = () => {
+	let deletedFigure = displayValue.at(-1);
+
 	displayValue = displayValue.slice(0, -1);
-	updateDisplay();
 
 	if (waitingSecondInput) {
 		secondInput = secondInput.slice(0, -1);
 	} else {
 		firstInput = firstInput.slice(0, -1);
 	}
-};
 
-const resetAll = () => {
-	displayValue = "";
-	firstInput = "";
-	secondInput = "";
-	waitingSecondInput = false;
-	prevOperator = null;
-
-	updateDisplay();
-};
-
-const handleNumber = (num) => {
-	displayValue += num;
-	updateDisplay();
-
-	if (waitingSecondInput) {
-		secondInput += num;
-	} else {
-		firstInput += num;
+	// Remove spaces when second input and operator deleted
+	if (deletedFigure === " " && displayValue.at(-1) === prevOperator) {
+		displayValue = firstInput;
+		waitingSecondInput = false;
+		prevOperator = null;
 	}
+
+	if (displayValue.length === 0) {
+		resetAll();
+	}
+
+	updateDisplay();
+};
+
+const handleOperator = (operator) => {
+	if (!firstInput) return;
+
+	prevOperator = operator;
+	waitingSecondInput = true;
+
+	if (secondInput) {
+		displayValue = `${firstInput} ${operator} ${secondInput}`;
+	} else {
+		displayValue = `${firstInput} ${operator} `;
+	}
+
+	updateDisplay();
 };
 
 const calculate = () => {
 	firstNum = Number(firstInput);
 	secondNum = Number(secondInput);
 
-	if (prevOperator === null) return;
+	if (!prevOperator || !secondNum) return;
 
 	let result = 0;
 
@@ -107,14 +126,14 @@ const calculate = () => {
 	updateDisplay();
 };
 
-const handleOperator = (operator) => {
-	if (firstInput === "") return;
-
+const resetAll = () => {
 	displayValue = "";
-	updateDisplay();
+	firstInput = "";
+	secondInput = "";
+	waitingSecondInput = false;
+	prevOperator = null;
 
-	waitingSecondInput = true;
-	prevOperator = operator;
+	updateDisplay();
 };
 
 const handleFunctionalButtons = (value) => {
