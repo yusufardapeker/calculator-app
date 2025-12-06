@@ -98,7 +98,26 @@ const deletion = () => {
 };
 
 const handleOperator = (operator) => {
-	if (!firstInput) return;
+	const allowFirstInputNegative = firstInput === "" && operator === "-";
+
+	const allowSecondInputNegative =
+		waitingSecondInput && secondInput === "" && prevOperator !== "-" && operator === "-";
+
+	if (allowFirstInputNegative) {
+		firstInput = "-";
+		displayValue = "-";
+		updateDisplay();
+		return;
+	}
+
+	if (allowSecondInputNegative) {
+		secondInput = "-";
+		displayValue += "-";
+		updateDisplay();
+		return;
+	}
+
+	if (firstInput === "-") return;
 
 	prevOperator = operator;
 	waitingSecondInput = true;
