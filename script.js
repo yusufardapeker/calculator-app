@@ -37,6 +37,16 @@ const updateDisplay = () => {
 	display.value = displayValue;
 };
 
+const setError = () => {
+	displayValue = "Error";
+	firstInput = "";
+	secondInput = "";
+	prevOperator = null;
+	waitingSecondInput = false;
+	updateDisplay();
+	// return;
+};
+
 const clearError = () => {
 	if (displayValue === "Error") {
 		displayValue = "";
@@ -133,9 +143,13 @@ const handleOperator = (operator) => {
 
 const calculate = () => {
 	const firstNum = Number(firstInput);
-	const secondNum = Number(secondInput);
 
-	if (!prevOperator || secondNum === "") return;
+	if (!prevOperator || isNaN(secondInput) || secondInput === "") {
+		setError();
+		return;
+	}
+
+	const secondNum = Number(secondInput);
 
 	let result = 0;
 
@@ -147,12 +161,7 @@ const calculate = () => {
 		result = firstNum * secondNum;
 	} else if (prevOperator === "/") {
 		if (firstNum === 0 || secondNum === 0) {
-			displayValue = "Error";
-			firstInput = "";
-			secondInput = "";
-			prevOperator = null;
-			waitingSecondInput = false;
-			updateDisplay();
+			setError();
 			return;
 		}
 
