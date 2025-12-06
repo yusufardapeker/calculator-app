@@ -1,27 +1,44 @@
 # Frontend Mentor - Calculator app solution
 
-### Links
+This is my solution to the **Calculator App** challenge on Frontend Mentor.
 
-This is a solution to the [Calculator app challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/calculator-app-9lteq5N29).
+### 🔗 Links
 
-Live Site URL: [The Website](https://calculator-app5039.netlify.app/)
+👉 **[Go Live Site](https://calculator-app5039.netlify.app/)** <br>
+👉 **[Visit Challenge](https://www.frontendmentor.io/challenges/calculator-app-9lteq5N29)**
 
-### Built with
+## 🛠️ Built With
 
-- SASS
-- Mobile-first workflow
+- **HTML**
+- **SASS**
+- **JavaScript**
 
 ### About The Project
 
-I don't have the figma file so it is not pixel perfect. I have tried to make similar as same as possible. The website is responsive only 1440px and 375px screen sizes. I'll be glad if you give me suggestion about mistakes, lackings and best practices and how can I fix it.
+I don't have the actual design file so the layout is not pixel-perfect. Implementation focuses on:
 
-### How to get this repository to your local computer?
+- Clean and modern CSS
+- Good accessibility practices
+- Error handling
+- Smooth responsive behavior
+- Keyboard-friendly interactions
 
-- Open your code editor
-- Open terminal and paste that code below
+## 🚀 Installation
 
-- `git clone https://github.com/yusufardapeker/calculator-app.git`
+```sh
+git clone https://github.com/yusufardapeker/calculator-app.git
+cd calculator-app
+```
 
-- Paste this code to navigate into the project `cd calculator-app`
+If you are using Visual Studio Code, you may enable:
 
-- Use _Live Server_ extension for running the site with your browser if you use Visual Studio Code.
+- Live Server → to preview the project
+
+- Live Sass Compiler (by Glenn Marks) → to compile style.scss
+
+## 📘 Usage
+
+You can interact with the calculator in two ways:
+
+- Mouse: Click the on-screen buttons
+- Keyboard: Type directly using your keyboard (numbers, operators, Enter, Backspace, etc.)
