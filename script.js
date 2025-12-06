@@ -193,6 +193,7 @@ const resetAll = () => {
 const handleFunctionalButtons = (value) => {
 	switch (value) {
 		case "del":
+		case "Backspace":
 			deletion();
 			break;
 
@@ -203,11 +204,13 @@ const handleFunctionalButtons = (value) => {
 		case "+":
 		case "-":
 		case "x":
+		case "*":
 		case "/":
-			handleOperator(value);
+			handleOperator(value === "*" ? "x" : value);
 			break;
 
 		case "=":
+		case "Enter":
 			calculate();
 			break;
 
@@ -218,7 +221,13 @@ const handleFunctionalButtons = (value) => {
 };
 
 const handleButtons = (e) => {
-	const buttonValue = e.target.value;
+	let buttonValue;
+
+	if (e.type === "click") {
+		buttonValue = e.target.value;
+	} else if (e.type === "keydown") {
+		buttonValue = e.key;
+	}
 
 	if (isNaN(buttonValue)) {
 		handleFunctionalButtons(buttonValue);
@@ -228,3 +237,5 @@ const handleButtons = (e) => {
 };
 
 buttons.forEach((button) => button.addEventListener("click", handleButtons));
+
+document.addEventListener("keydown", handleButtons);
