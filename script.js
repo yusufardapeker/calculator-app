@@ -127,16 +127,19 @@ const handleOperator = (operator) => {
 		return;
 	}
 
-	if (firstInput === "-") return;
-
 	prevOperator = operator;
-	waitingSecondInput = true;
+
+	if (firstInput) {
+		displayValue = `${firstInput} ${prevOperator} `;
+	} else {
+		return;
+	}
 
 	if (secondInput) {
-		displayValue = `${firstInput} ${operator} ${secondInput}`;
-	} else {
-		displayValue = `${firstInput} ${operator} `;
+		displayValue = `${firstInput} ${prevOperator} ${secondInput}`;
 	}
+
+	waitingSecondInput = true;
 
 	updateDisplay();
 };
