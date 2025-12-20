@@ -44,7 +44,6 @@ const setError = () => {
 	prevOperator = null;
 	waitingSecondInput = false;
 	updateDisplay();
-	// return;
 };
 
 const clearError = () => {
@@ -227,6 +226,16 @@ const handleButtons = (e) => {
 		buttonValue = e.target.value;
 	} else if (e.type === "keydown") {
 		buttonValue = e.key;
+
+		buttons.forEach((button) => {
+			if (button.value === e.key) {
+				button.focus();
+
+				setTimeout(() => {
+					button.blur();
+				}, 500);
+			}
+		});
 	}
 
 	if (isNaN(buttonValue)) {
