@@ -209,7 +209,6 @@ const handleFunctionalButtons = (value) => {
 			break;
 
 		case "=":
-		case "Enter":
 			calculate();
 			break;
 
